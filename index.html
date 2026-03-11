@@ -5,14 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio - Nikolas Oliveira</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <section class="parent">
         <div class="div1" id="sobre">
-            <h2>Nikolas Oliveira</h2>
-            <img src="" alt="Foto de perfil">
-            <p>Sou um desenvolvedor apaixonado por criar soluções web inovadoras.</p>
+            <div class="card-perfil">
+                <div class="perfil-foto">
+                    <img src="https://via.placeholder.com/150" alt="Foto de perfil" class="foto-perfil">
+                </div>
+                <h2>Nikolas Oliveira</h2>
+                <p class="perfil-titulo">Desenvolvedor Full Stack</p>
+                <p class="perfil-bio">Sou um desenvolvedor apaixonado por criar soluções web inovadoras.</p>
+                <div class="perfil-redes">
+                    <a href="https://github.com/nikolasoliveiraa" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:seu.email@example.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="div2" id="nave-tabs">
             <nav>
@@ -28,33 +45,95 @@
         <div class="div3" id="Info">
             <div id="habilidades" class="tab-content active">
                 <h3>Habilidades</h3>
-                <ul>
-                    <li>HTML/CSS</li>
-                    <li>JavaScript</li>
-                    <li>React</li>
-                    <li>Node.js</li>
-                </ul>
+                <div class="habilidades-container">
+                    <div class="habilidade-card">
+                        <i class="fab fa-html5"></i>
+                        <p>HTML/CSS</p>
+                    </div>
+                    <div class="habilidade-card">
+                        <i class="fab fa-js"></i>
+                        <p>JavaScript</p>
+                    </div>
+                    <div class="habilidade-card">
+                        <i class="fab fa-react"></i>
+                        <p>React</p>
+                    </div>
+                    <div class="habilidade-card">
+                        <i class="fab fa-node-js"></i>
+                        <p>Node.js</p>
+                    </div>
+                </div>
             </div>
             <div id="projetos" class="tab-content">
                 <h3>Projetos</h3>
-                <div class="projeto">
-                    <h4>Projeto 1</h4>
-                    <p>Descrição breve do projeto.</p>
-                </div>
-                <div class="projeto">
-                    <h4>Projeto 2</h4>
-                    <p>Descrição breve do projeto.</p>
+                <div id="projetos-container" class="projetos-grid">
+                    <p style="text-align: center; color: #c0c0c0;">Carregando projetos do GitHub...</p>
                 </div>
             </div>
             <div id="formacao" class="tab-content">
                 <h3>Formação</h3>
-                <p>Bacharelado em Ciência da Computação - Universidade Z (2015-2019)</p>
-                <p>Curso de Desenvolvimento Web - Plataforma Online (2020)</p>
+                <div class="formacao-container">
+                    <div class="card-formacao">
+                        <div class="card-header">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>Bacharelado em Ciência da Computação</h4>
+                        </div>
+                        <p class="card-instituicao">Universidade Z</p>
+                        <div class="card-footer">
+                            <span class="card-periodo">
+                                <i class="fas fa-calendar"></i>
+                                2015 - 2019
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card-formacao">
+                        <div class="card-header">
+                            <i class="fas fa-code"></i>
+                            <h4>Curso de Desenvolvimento Web</h4>
+                        </div>
+                        <p class="card-instituicao">Plataforma Online</p>
+                        <div class="card-footer">
+                            <span class="card-periodo">
+                                <i class="fas fa-calendar"></i>
+                                2020
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="experiencia" class="tab-content">
                 <h3>Experiência</h3>
-                <p>Desenvolvedor Web - Empresa X (2020-2023)</p>
-                <p>Estagiário em TI - Empresa Y (2018-2020)</p>
+                <div class="experiencia-container">
+                    <div class="card-experiencia">
+                        <div class="card-header">
+                            <i class="fas fa-briefcase"></i>
+                            <h4>Desenvolvedor Web</h4>
+                        </div>
+                        <p class="card-empresa">Empresa X</p>
+                        <div class="card-footer">
+                            <span class="card-periodo">
+                                <i class="fas fa-calendar"></i>
+                                2020 - 2023
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card-experiencia">
+                        <div class="card-header">
+                            <i class="fas fa-laptop"></i>
+                            <h4>Estagiário em TI</h4>
+                        </div>
+                        <p class="card-empresa">Empresa Y</p>
+                        <div class="card-footer">
+                            <span class="card-periodo">
+                                <i class="fas fa-calendar"></i>
+                                2018 - 2020
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </section>
@@ -66,5 +145,75 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        // Carregar projetos do GitHub
+        const GITHUB_USERNAME = 'nikolasoliveiraa';
+        const container = document.getElementById('projetos-container');
+
+        async function carregarProjetos() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`);
+                const repos = await response.json();
+
+                if (!Array.isArray(repos)) {
+                    container.innerHTML = '<p style="color: #c0c0c0;">Erro ao carregar projetos.</p>';
+                    return;
+                }
+
+                container.innerHTML = '';
+
+                repos.forEach(repo => {
+                    const card = document.createElement('div');
+                    card.className = 'projeto-card';
+                    
+                    const stars = repo.stargazers_count || 0;
+                    const language = repo.language || 'Sem linguagem';
+                    const description = repo.description || 'Sem descrição';
+
+                    card.innerHTML = `
+                        <div class="projeto-header">
+                            <h4><i class="fas fa-code-branch"></i> ${repo.name}</h4>
+                            <a href="${repo.html_url}" target="_blank" title="Ver no GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <p class="projeto-desc">${description.substring(0, 100)}${description.length > 100 ? '...' : ''}</p>
+                        <div class="projeto-footer">
+                            <span class="projeto-lang"><i class="fas fa-code"></i> ${language}</span>
+                            <span class="projeto-stars"><i class="fas fa-star"></i> ${stars}</span>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar projetos:', error);
+                container.innerHTML = '<p style="color: #c0c0c0;">Erro ao carregar projetos do GitHub.</p>';
+            }
+        }
+
+        // Carregar projetos quando a página carrega
+        document.addEventListener('DOMContentLoaded', carregarProjetos);
+
+        // Sistema de abas
+        document.querySelectorAll('.tab-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tabId = this.getAttribute('href');
+                
+                // Remover ativo de todos os tabs
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-link').forEach(l => {
+                    l.classList.remove('active');
+                });
+
+                // Adicionar ativo ao tab selecionado
+                document.querySelector(tabId).classList.add('active');
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
